@@ -1,8 +1,7 @@
-FROM openjdk:8u212-jre-alpine
+FROM adoptopenjdk/openjdk11:x86_64-alpine-jre-11.0.5_10
 
 ARG kafka_version=2.3.0
 ARG scala_version=2.12
-ARG glibc_version=2.29-r0
 ARG vcs_ref=unspecified
 ARG build_date=unspecified
 
@@ -17,8 +16,7 @@ LABEL org.label-schema.name="kafka" \
 
 ENV KAFKA_VERSION=$kafka_version \
     SCALA_VERSION=$scala_version \
-    KAFKA_HOME=/opt/kafka \
-    GLIBC_VERSION=$glibc_version
+    KAFKA_HOME=/opt/kafka
 
 ENV PATH=${PATH}:${KAFKA_HOME}/bin
 
@@ -31,10 +29,7 @@ RUN apk add --no-cache bash curl jq docker \
  && tar xfz /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -C /opt \
  && rm /tmp/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz \
  && ln -s /opt/kafka_${SCALA_VERSION}-${KAFKA_VERSION} ${KAFKA_HOME} \
- && rm /tmp/* \
- && wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk \
- && apk add --no-cache --allow-untrusted glibc-${GLIBC_VERSION}.apk \
- && rm glibc-${GLIBC_VERSION}.apk
+ && rm /tmp/*
 
 COPY overrides /opt/overrides
 
