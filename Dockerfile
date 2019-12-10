@@ -5,6 +5,7 @@ ARG scala_version=2.12
 ARG glibc_version=2.29-r0
 ARG vcs_ref=unspecified
 ARG build_date=unspecified
+ARG kafka_download_url=unspecified
 
 LABEL org.label-schema.name="kafka" \
       org.label-schema.description="Apache Kafka" \
@@ -18,7 +19,8 @@ LABEL org.label-schema.name="kafka" \
 ENV KAFKA_VERSION=$kafka_version \
     SCALA_VERSION=$scala_version \
     KAFKA_HOME=/opt/kafka \
-    GLIBC_VERSION=$glibc_version
+    GLIBC_VERSION=$glibc_version \
+    KAFKA_DOWNLOAD_URL=$kafka_download_url
 
 ENV PATH=${PATH}:${KAFKA_HOME}/bin
 
