@@ -18,9 +18,7 @@ LABEL org.label-schema.name="kafka" \
 ENV KAFKA_VERSION=$kafka_version \
     SCALA_VERSION=$scala_version \
     KAFKA_HOME=/opt/kafka \
-    GLIBC_VERSION=$glibc_version \
     KAFKA_DOWNLOAD_URL=$kafka_download_url
-    KAFKA_HOME=/opt/kafka
 
 ENV PATH=${PATH}:${KAFKA_HOME}/bin
 
