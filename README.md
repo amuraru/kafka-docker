@@ -30,6 +30,14 @@ All versions of the image are built from the same set of scripts with only minor
 Everytime the image is updated, all tags will be pushed with the latest updates. This should allow for greater consistency across tags, as well as any security updates that have been made to the base image.
 
 ---
+## Building non released kafka docker images
+In order to build a non released kafka version docker image (eg.: rc releases), one can use the following build command:
+
+```
+docker build --build-arg kafka_version=2.4.0 --build-arg kafka_download_url=https://home.apache.org/\~manikumar/kafka-2.4.0-rc4/kafka_2.12-2.4.0.tgz -t kafka:2.4.0-rc4 .
+```
+
+---
 
 ## Announcements
 
